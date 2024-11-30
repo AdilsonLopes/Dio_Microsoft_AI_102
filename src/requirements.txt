@@ -1,0 +1,6 @@
+azure-core
+azure-ai-documentintelligence==3.2.0  # Versão mais recente recomendada
+azure-identity
+azure-storage-blob==12.14.1
+python-dotenv
+streamlit
