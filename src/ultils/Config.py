@@ -5,6 +5,6 @@ load_dotenv()
 
 class config:
     ENDPOINT = os.getenv("ENDPOINT")
-    KEI = os.getenv("SUBSCRIPTION_KEY")
+    KEY = os.getenv("SUBSCRIPTION_KEY")
     AZURE_STORAGE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
     CONTAINER_NAME = os.getenv("CONTAINER_NAME")

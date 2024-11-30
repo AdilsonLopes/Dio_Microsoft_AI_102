@@ -5,26 +5,25 @@ from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 from ultils.Config import config
 
 
+
 def analize_credit_card(card_url):
         
-    credential = AzureKeyCredential(config.KEI)
+    credential = AzureKeyCredential(config.KEY)
+
     document_client = DocumentIntelligenceClient(config.ENDPOINT, credential)
-    #credential = ManagedIdentityCredential()
-    #document_client = DocumentIntelligenceClient(
-    #endpoint=(config.ENDPOINT),
-    #credential=credential)
 
     card_info = document_client.begin_analyze_document(
-        "prebuIlt-creditCard", AnalyzeDocumentRequest(url_source=card_url))
+        "prebuilt-creditCard", AnalyzeDocumentRequest(url_source=card_url))
     result = card_info.result()
 
     for document in result.documents:
         fields = document.get('fields', {})
 
-        return 
-        {
+        return {
+        
             "card_name": fields.get('CardHolderName', {}).get('content'),
             "card_number": fields.get('CardNumber', {}).get('content'),
             "expiry_date": fields.get('ExpirationDate', {}).get('content'),
-            "bank_name": fileds.get('IssuingBank', {}).get('content'),
+            "bank_name": fields.get('IssuingBank', {}).get('content'),
+            "payment_network": fields.get('PaymentNetwork', {}).get('content'),
         }
